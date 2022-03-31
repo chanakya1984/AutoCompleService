@@ -9,4 +9,7 @@ public class CarManufacturerRepository : RepositoryBase<CarManufacturer>, ICarMa
     public CarManufacturerRepository(CarAutoCompleteDbContext context) : base(context)
     {
     }
+
+    public IEnumerable<CarManufacturer> GetAllManufacturer( bool trackChanges ) => FindAll( trackChanges );
+    public void CreateManufacturer( CarManufacturer model ) => Create( model );
 }

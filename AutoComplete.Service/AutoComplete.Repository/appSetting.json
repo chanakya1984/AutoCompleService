@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "msSql": "server=CHANAKYA-PC\\SQLEXPRESS;database=autoComplete;User ID=sa;Password=ailudulm2?"
+  } 
+}

@@ -11,11 +11,12 @@ public class RepositoryManager : IRepositoryManager
     private readonly Lazy<ICarManufacturerRepository> _carManufacturerRepository;
     private readonly Lazy<ICarModelRepository> _carModelRepository;
 
-    public RepositoryManager( CarAutoCompleteDbContext context, Lazy<ICarManufacturerRepository> carManufacturerRepository, Lazy<ICarModelRepository> carModelRepository )
+    public RepositoryManager( CarAutoCompleteDbContext context)
     {
         _context = context;
-        _carManufacturerRepository = carManufacturerRepository;
-        _carModelRepository = carModelRepository;
+        _carManufacturerRepository =
+            new Lazy<ICarManufacturerRepository>( () => new CarManufacturerRepository( context ) );
+        _carModelRepository = new Lazy<ICarModelRepository>( () => new CarModelRepository( context ) );
     }
 
     public ICarManufacturerRepository CarManufacturer => _carManufacturerRepository.Value;

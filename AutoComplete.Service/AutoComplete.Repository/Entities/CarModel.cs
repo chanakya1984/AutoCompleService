@@ -3,8 +3,8 @@ using Common.Enums;
 
 public class CarModel
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public Guid ManufactureId { get; set; }
+    public int Id { get; set; }
+    public int ManufactureId { get; set; }
     public CarManufacturer Manufacturer { get; set; } = new CarManufacturer();
     public string Name { get; set; } = string.Empty;
     public CarFuelTypes FuelType { get; set; }
