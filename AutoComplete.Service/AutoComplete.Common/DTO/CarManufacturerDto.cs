@@ -1,3 +1,3 @@
 ﻿namespace AutoComplete.Common.DTO;
 
-public record class CarManufacturerDto(string ManufacturerName);
+public record class CarManufacturerDto(string Name);

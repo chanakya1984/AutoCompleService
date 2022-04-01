@@ -6,5 +6,5 @@ using Entities;
 public interface ICarManufacturerRepository
 {
     IEnumerable<CarManufacturer> GetAllManufacturer( bool trackChanges );
-    void CreateManufacturer( CarManufacturer model );
+    Task CreateManufacturer( CarManufacturer model );
 }

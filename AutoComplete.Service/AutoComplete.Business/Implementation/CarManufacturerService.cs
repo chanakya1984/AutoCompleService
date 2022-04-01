@@ -14,19 +14,20 @@ using AutoMapper;
 public class CarManufacturerService : ICarManufacturerService
 {
     private readonly IRepositoryManager _repositoryManager;
-    private readonly Mapper _mapper;
+    private readonly IMapper _mapper;
 
-    public CarManufacturerService( IRepositoryManager repositoryManager, Mapper mapper )
+    public CarManufacturerService( IRepositoryManager repositoryManager, IMapper mapper )
     {
         _repositoryManager = repositoryManager;
         _mapper = mapper;
     }
 
-    public CarManufacturerDto CreateOneCarManufacturer( int id, CarManufacturerDto carManufacturer )
+    public async Task<(int, CarManufacturerDto)> CreateOneCarManufacturer( CarManufacturerDto carManufacturer )
     {
         var entity = _mapper.Map<CarManufacturer>( carManufacturer );
-        _repositoryManager.CarManufacturer.CreateManufacturer( entity );
-        return _mapper.Map<CarManufacturerDto>( entity );
+        await _repositoryManager.CarManufacturer.CreateManufacturer( entity );
+        await _repositoryManager.Save();
+        return (entity.Id, _mapper.Map<CarManufacturerDto>( entity ));
     }
 
     public IEnumerable<CarManufacturerDto> GetAllCarManufacturer( bool loadRelations = false ) => _mapper.Map<CarManufacturerDto[]>( _repositoryManager.CarManufacturer.GetAllManufacturer( false ) );

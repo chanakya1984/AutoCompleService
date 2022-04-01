@@ -11,5 +11,6 @@ public class CarManufacturerRepository : RepositoryBase<CarManufacturer>, ICarMa
     }
 
     public IEnumerable<CarManufacturer> GetAllManufacturer( bool trackChanges ) => FindAll( trackChanges );
-    public void CreateManufacturer( CarManufacturer model ) => Create( model );
+
+    public async Task CreateManufacturer( CarManufacturer model ) => await Create( model );
 }

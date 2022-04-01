@@ -7,8 +7,9 @@ public class AutoCompleteProfile : Profile
 {
     public AutoCompleteProfile()
     {
-        CreateMap<CarManufacturerDto, CarManufacturer>();
-        CreateMap<CarManufacturerDto, CarModel>();
+       
+        CreateMap<CarManufacturerDto, CarManufacturer>().DisableCtorValidation().ReverseMap();
+        //CreateMap<CarManufacturerDto, CarModel>().DisableCtorValidation().ReverseMap();
     }
 }
 

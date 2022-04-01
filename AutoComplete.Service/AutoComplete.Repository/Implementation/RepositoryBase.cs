@@ -22,7 +22,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
             ? RepositoryContext.Set<T>().Where(expression).AsNoTracking()
             : RepositoryContext.Set<T>().Where(expression);
 
-    public async void Create(T entity) => await RepositoryContext.Set<T>().AddAsync(entity);
+    public async Task Create(T entity) => await RepositoryContext.Set<T>().AddAsync(entity);
 
     public async void CreateMany(T[] entities) => await RepositoryContext.Set<T>().AddRangeAsync(entities);
 

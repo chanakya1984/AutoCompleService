@@ -3,7 +3,7 @@
 using Common.DTO;
 public interface ICarManufacturerService
 {
-    CarManufacturerDto CreateOneCarManufacturer(int id, CarManufacturerDto carManufacturer);
+    Task<(int Id, CarManufacturerDto Manufacturer)> CreateOneCarManufacturer(CarManufacturerDto carManufacturer);
 
     IEnumerable<CarManufacturerDto> GetAllCarManufacturer( bool loadRelations = false );
 

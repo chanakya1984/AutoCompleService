@@ -21,5 +21,5 @@ public class RepositoryManager : IRepositoryManager
 
     public ICarManufacturerRepository CarManufacturer => _carManufacturerRepository.Value;
     public ICarModelRepository CarModel => _carModelRepository.Value;
-    public async void Save() => await  _context.SaveChangesAsync();
+    public async Task Save() => await  _context.SaveChangesAsync();
 }
