@@ -1,6 +1,4 @@
 ﻿using AutoComplete.Business;
-using AutoComplete.Business.Implementation;
-using AutoComplete.Business.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 

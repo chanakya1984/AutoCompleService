@@ -1,13 +1,13 @@
-﻿using AutoComplete.Repository.DbContext;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿namespace AutoComplete.Repository;
 
-namespace AutoComplete.Repository;
-
+using DbContext;
 using Implementation;
 using Interface;
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 public static class DependencyInjection
 {
     public static IServiceCollection AddRepository( this IServiceCollection serviceCollection )

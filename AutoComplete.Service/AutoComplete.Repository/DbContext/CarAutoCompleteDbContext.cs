@@ -1,6 +1,5 @@
-﻿
+﻿namespace AutoComplete.Repository.DbContext;
 
-namespace AutoComplete.Repository.DbContext;
 using Entities;
 
 using Microsoft.EntityFrameworkCore;

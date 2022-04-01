@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoComplete.Business\AutoComplete.Business.csproj" />
-    <ProjectReference Include="..\AutoComplete.Common\AutoComplete.Common.csproj" />
   </ItemGroup>
 
 </Project>

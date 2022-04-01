@@ -1,16 +1,10 @@
-﻿
+﻿namespace AutoComplete.Business.Implementation;
 
-
-
-
-
-namespace AutoComplete.Business.Implementation;
-
-using AutoComplete.Common.DTO;
-using AutoComplete.Repository.Entities;
+using Common.DTO;
+using Repository.Entities;
 using Interface;
+using Repository.Interface;
 
-using AutoComplete.Repository.Interface;
 using AutoMapper;
 using HashidsNet;
 

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
 
 namespace AutoComplete.Repository.Implementation;
-
 
 using DbContext;
 using Entities;
 using Interface;
+
+using Microsoft.EntityFrameworkCore;
 
 public class CarManufacturerRepository : RepositoryBase<CarManufacturer>, ICarManufacturerRepository
 {
@@ -17,7 +18,7 @@ public class CarManufacturerRepository : RepositoryBase<CarManufacturer>, ICarMa
 
     public async Task CreateManufacturer( CarManufacturer model ) => await Create( model );
 
-    public async Task<CarManufacturer> GetByIdAsync( int id, bool trackChanges ) =>
+    public async Task<CarManufacturer?> GetByIdAsync( int id, bool trackChanges ) =>
         await FindByCondition( x => x.Id == id, trackChanges )
             .FirstOrDefaultAsync();
 

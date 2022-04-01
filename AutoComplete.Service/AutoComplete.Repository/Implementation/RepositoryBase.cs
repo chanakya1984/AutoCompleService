@@ -1,13 +1,10 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
-
-namespace AutoComplete.Repository.Implementation;
+﻿namespace AutoComplete.Repository.Implementation;
 
 using Interface;
 using DbContext;
 
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {

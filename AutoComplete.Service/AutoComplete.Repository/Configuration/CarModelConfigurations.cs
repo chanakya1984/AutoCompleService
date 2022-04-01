@@ -1,8 +1,6 @@
-﻿
+﻿namespace AutoComplete.Repository.Configuration;
 
-namespace AutoComplete.Repository.Configuration;
-
-using AutoComplete.Repository.Entities;
+using Entities;
 
 
 using Microsoft.EntityFrameworkCore;

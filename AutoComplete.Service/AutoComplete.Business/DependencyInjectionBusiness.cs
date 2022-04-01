@@ -1,12 +1,13 @@
 ﻿
-using HashidsNet;
+
 
 namespace AutoComplete.Business;
 
 using Implementation;
 using Interface;
-using Microsoft.Extensions.Configuration;
+
 using Microsoft.Extensions.DependencyInjection;
+using HashidsNet;
 
 
 public static class DependencyInjectionBusiness

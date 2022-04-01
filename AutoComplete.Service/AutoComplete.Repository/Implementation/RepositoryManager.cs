@@ -1,8 +1,8 @@
 ﻿
 
-using AutoComplete.Repository.DbContext;
-
 namespace AutoComplete.Repository.Implementation;
+
+using DbContext;
 using Interface;
 public class RepositoryManager : IRepositoryManager
 {

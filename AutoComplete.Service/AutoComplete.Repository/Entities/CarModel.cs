@@ -1,4 +1,5 @@
 ﻿namespace AutoComplete.Repository.Entities;
+
 using Common.Enums;
 
 public class CarModel

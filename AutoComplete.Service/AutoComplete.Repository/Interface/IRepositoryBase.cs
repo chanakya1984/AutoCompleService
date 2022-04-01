@@ -1,6 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿namespace AutoComplete.Repository.Interface;
 
-namespace AutoComplete.Repository.Interface;
+using System.Linq.Expressions;
 public interface IRepositoryBase<T>
 {
     IQueryable<T> FindAll(bool trackChanges);

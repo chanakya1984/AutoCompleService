@@ -8,7 +8,7 @@ using Common.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route( "[controller]" )]
+[Route( "[controller]/V1" )]
 public class CarManufactureController : ControllerBase
 {
     private readonly ILogger<CarManufactureController> _logger;
@@ -22,6 +22,7 @@ public class CarManufactureController : ControllerBase
     }
 
     [HttpPost("CreateOne" )]
+    [ProducesResponseType(201)]
     public async Task<IActionResult> CreateNew( CarManufacturerDto data )
     {
         var obj = await _manufacturerService.CreateOneCarManufacturer( data );
@@ -29,21 +30,30 @@ public class CarManufactureController : ControllerBase
     }
 
     [HttpGet("GetById/{id}",Name = "GetById/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CarManufacturerDto))]
+    [ProducesResponseType( StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById( string id )
     {
         var result = await _manufacturerService.GetById( id );
         if (result is null)
         {
-            return NotFound( "Invalid Id" );
+            return NotFound( "Invalid Id." );
         }
         return Ok(result);
     }
 
+    [ProducesResponseType( StatusCodes.Status200OK, Type = typeof( IEnumerable<CarManufacturerDto> ) )]
+    [ProducesResponseType( StatusCodes.Status404NotFound )]
     [HttpGet( "SearchByNameStartsWith/{name}" )]
     public async Task<IActionResult> SearchByName( string name )
     {
         var result = await _manufacturerService.GetByName( name );
-        return Ok( result );
+        if (result.Any())
+        {
+            return Ok( result );
+        }
+
+        return NotFound( "Invalid Name." );
     }
 }
 
