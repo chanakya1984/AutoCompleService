@@ -7,4 +7,7 @@ public interface ICarManufacturerService
 
     IEnumerable<CarManufacturerDto> GetAllCarManufacturer( bool loadRelations = false );
 
+    Task<CarManufacturerDto> GetById(int id);
+
+    Task<IEnumerable<CarManufacturerDto>> GetByName(string name);
 }

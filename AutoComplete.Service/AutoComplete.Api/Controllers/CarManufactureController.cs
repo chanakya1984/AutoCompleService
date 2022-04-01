@@ -21,18 +21,26 @@ public class CarManufactureController : ControllerBase
         _manufacturerService = manufacturerService;
     }
 
-    [HttpPost( Name = "CreateNew" )]
+    [HttpPost("CreateOne" )]
     public async Task<IActionResult> CreateNew( CarManufacturerDto data )
     {
         var obj = await _manufacturerService.CreateOneCarManufacturer( data );
         return CreatedAtRoute( "GetById/{id}", new {id = obj.Id}, obj );
     }
 
-    [HttpGet( Name = "GetById/{id}" )]
+    [HttpGet("GetById/{id}")]
     public async Task<IActionResult> GetById( int id )
     {
-        var result = _manufacturerService.GetAllCarManufacturer( false );
-        return Ok(result.Take( 1 ));
+        var result = await _manufacturerService.GetById( id );
+        return Ok(result);
+    }
+
+    //[Route( "SearchByName/{name}" )]
+    [HttpGet( "SearchByName/{name}" )]
+    public async Task<IActionResult> SearchByName( string name )
+    {
+        var result = await _manufacturerService.GetByName( name );
+        return Ok( result );
     }
 }
 
