@@ -28,15 +28,18 @@ public class CarManufactureController : ControllerBase
         return CreatedAtRoute( "GetById/{id}", new {id = obj.Id}, obj );
     }
 
-    [HttpGet("GetById/{id}")]
-    public async Task<IActionResult> GetById( int id )
+    [HttpGet("GetById/{id}",Name = "GetById/{id}")]
+    public async Task<IActionResult> GetById( string id )
     {
         var result = await _manufacturerService.GetById( id );
+        if (result is null)
+        {
+            return NotFound( "Invalid Id" );
+        }
         return Ok(result);
     }
 
-    //[Route( "SearchByName/{name}" )]
-    [HttpGet( "SearchByName/{name}" )]
+    [HttpGet( "SearchByNameStartsWith/{name}" )]
     public async Task<IActionResult> SearchByName( string name )
     {
         var result = await _manufacturerService.GetByName( name );

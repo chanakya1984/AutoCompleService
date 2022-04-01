@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoComplete.Business.Implementation;
-using AutoComplete.Business.Interface;
-using Microsoft.Extensions.DependencyInjection;
+﻿
+using HashidsNet;
 
 namespace AutoComplete.Business;
+
+using Implementation;
+using Interface;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+
 public static class DependencyInjectionBusiness
 {
     public static IServiceCollection AddBusiness( this IServiceCollection collection )
     {
+      
         collection = AutoComplete.Repository.DependencyInjection.AddRepository( collection )
                 .AddScoped<ICarManufacturerService, CarManufacturerService>()
                 .AddAutoMapper( AppDomain.CurrentDomain.GetAssemblies() )
+                .AddSingleton<IHashids>(_ => new Hashids( "8203B45B-30D7-4440-A600-C7B00223FB5F",11))
             ;
         return collection;
     }
