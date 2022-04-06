@@ -25,10 +25,11 @@ public class CarManufactureController : ControllerBase
     [ProducesResponseType(201)]
     public async Task<IActionResult> CreateNew( CarManufacturerDto data )
     {
-        _logger.LogInformation( "In function create new" );
+        _logger.LogWarning( "In function create new" );
         var obj = await _manufacturerService.CreateOneCarManufacturer( data );
+        _logger.LogWarning( "created new {id}",obj.Id );
         return CreatedAtRoute( "GetById/{id}", new {id = obj.Id}, obj );
-        _logger.LogInformation( "created new" );
+    
     }
 
     [HttpGet("GetById/{id}",Name = "GetById/{id}")]

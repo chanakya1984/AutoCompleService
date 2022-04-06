@@ -4,9 +4,11 @@ using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigLogs();
+builder.Host.UseSerilog( ( context, services, configuration ) => configuration
+    .ReadFrom.Configuration( context.Configuration )
+    .ReadFrom.Services( services )
+    .Enrich.FromLogContext() );
 
-builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddBusiness();
@@ -15,6 +17,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
+
+app.UseSerilogRequestLogging( configure =>
+{
+    configure.MessageTemplate = "HTTP {RequestMethod} {RequestPath} ({UserId}) responded {StatusCode} in {Elapsed:0.0000}ms";
+} ); // We want to log all HTTP requests
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
