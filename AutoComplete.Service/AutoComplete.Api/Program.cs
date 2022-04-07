@@ -20,6 +20,7 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging( configure =>
 {
+    configure.IncludeQueryInRequestPath = true;
     configure.MessageTemplate = "HTTP {RequestMethod} {RequestPath} ({UserId}) responded {StatusCode} in {Elapsed:0.0000}ms";
 } ); // We want to log all HTTP requests
 

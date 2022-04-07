@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace AutoComplete.Repository.Configuration;
+﻿namespace AutoComplete.Repository.Configuration;
 
 using Entities;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 internal class CarManufactureConfiguration : IEntityTypeConfiguration<CarManufacturer>
 {
     public void Configure( EntityTypeBuilder<CarManufacturer> builder )

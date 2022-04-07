@@ -1,7 +1,4 @@
-﻿
-
-
-namespace AutoComplete.Business;
+﻿namespace AutoComplete.Business;
 
 using Implementation;
 using Interface;

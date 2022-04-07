@@ -1,4 +1,5 @@
 ﻿namespace AutoComplete.Business.AutoMappers.Profiles;
+
 using Common.DTO;
 using Repository.Entities;
 

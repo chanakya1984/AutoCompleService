@@ -1,6 +1,4 @@
-﻿
-
-namespace AutoComplete.Repository.Implementation;
+﻿namespace AutoComplete.Repository.Implementation;
 
 using DbContext;
 using Interface;

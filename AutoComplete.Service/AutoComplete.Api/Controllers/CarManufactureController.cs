@@ -1,11 +1,10 @@
-﻿
-
-namespace AutoComplete.Api.Controllers;
+﻿namespace AutoComplete.Api.Controllers;
 
 using Business.Interface;
 using Common.DTO;
 
 using Microsoft.AspNetCore.Mvc;
+using SerilogTimings;
 
 [ApiController]
 [Route( "[controller]/V1" )]
@@ -25,10 +24,12 @@ public class CarManufactureController : ControllerBase
     [ProducesResponseType(201)]
     public async Task<IActionResult> CreateNew( CarManufacturerDto data )
     {
-        _logger.LogWarning( "In function create new" );
-        var obj = await _manufacturerService.CreateOneCarManufacturer( data );
-        _logger.LogWarning( "created new {id}",obj.Id );
-        return CreatedAtRoute( "GetById/{id}", new {id = obj.Id}, obj );
+        (string Id, CarManufacturerDto Manufacturer) createdData;
+        using (Operation.Time( "Creating New Manufacture" ))
+        {
+            createdData = await _manufacturerService.CreateOneCarManufacturer( data );
+        }
+        return CreatedAtRoute( "GetById/{id}", new {id = createdData.Id}, createdData.Manufacturer );
     
     }
 
