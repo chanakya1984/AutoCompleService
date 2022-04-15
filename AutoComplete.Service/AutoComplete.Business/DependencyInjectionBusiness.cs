@@ -14,6 +14,7 @@ public static class DependencyInjectionBusiness
       
         collection = AutoComplete.Repository.DependencyInjection.AddRepository( collection )
                 .AddScoped<ICarManufacturerService, CarManufacturerService>()
+                .AddScoped<ICarModelService, CarModelService>()
                 .AddAutoMapper( AppDomain.CurrentDomain.GetAssemblies() )
                 .AddSingleton<IHashids>(_ => new Hashids( "8203B45B-30D7-4440-A600-C7B00223FB5F",11))
             ;

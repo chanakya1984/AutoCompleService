@@ -29,11 +29,11 @@ public class CarManufactureController : ControllerBase
         {
             createdData = await _manufacturerService.CreateOneCarManufacturer( data );
         }
-        return CreatedAtRoute( "GetById/{id}", new {id = createdData.Id}, createdData.Manufacturer );
+        return CreatedAtRoute("GetCarManufactureById/{id}", new {id = createdData.Id}, createdData.Manufacturer );
     
     }
 
-    [HttpGet("GetById/{id}",Name = "GetById/{id}")]
+    [HttpGet("GetById/{id}", Name = "GetCarManufactureById/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CarManufacturerDto))]
     [ProducesResponseType( StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById( string id )
@@ -44,6 +44,18 @@ public class CarManufactureController : ControllerBase
             return NotFound( "Invalid Id." );
         }
         return Ok(result);
+    }
+
+
+    [HttpGet("GetAll", Name = "GetAll")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CarManufacturerDto>))]
+    public async Task<IActionResult> GetAll()
+    {
+        using (Operation.Time("CarManufactureController.GetAll"))
+        {
+            return Ok(_manufacturerService.GetAllCarManufacturer(false));
+        }
+
     }
 
     [ProducesResponseType( StatusCodes.Status200OK, Type = typeof( IEnumerable<CarManufacturerDto> ) )]
