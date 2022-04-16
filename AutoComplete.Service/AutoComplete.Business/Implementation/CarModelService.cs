@@ -37,7 +37,13 @@ internal class CarModelService : ICarModelService
         return (_hashId.Encode(entity.Id), _mapper.Map<CarModelDto>(entity));
     }
 
-    public IEnumerable<CarModelDto> GetAllCarModelAsync(bool loadRelations = false) => throw new NotImplementedException();
+    public IEnumerable<CarModelDto> GetAllCarModel(bool loadRelations = false)
+    {
+        using (Operation.Time(""))
+        {
+            return _mapper.Map<CarModelDto[]>(_repositoryManager.CarModel.GetAllCarModels());
+        }
+    }
 
     public async Task<CarModelDto?> GetByIdAsync(string id)
     {

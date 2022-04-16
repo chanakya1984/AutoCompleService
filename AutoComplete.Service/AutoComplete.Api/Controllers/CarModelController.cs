@@ -40,4 +40,8 @@ public class CarModelController : ControllerBase
         var result =  await _carModelService.GetByIdAsync(id);
         return Ok(result);
     }
+
+    [HttpGet("GetAllCarModel")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CarManufacturerDto>))]
+    public async Task<IActionResult> GetAllCarModels() => Ok(_carModelService.GetAllCarModel(false));
 }
