@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using SerilogTimings;
 
 [ApiController]
-[Route( "[controller]/V1" )]
+// [Route( "api/[controller]" )]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 public class CarManufactureController : ControllerBase
 {
     private readonly ILogger<CarManufactureController> _logger;
@@ -33,7 +35,7 @@ public class CarManufactureController : ControllerBase
     
     }
 
-    [HttpGet("GetById/{id}", Name = "GetCarManufactureById/{id}")]
+    [HttpGet("GetCarManufactureById/{id}", Name = "GetCarManufactureById/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CarManufacturerDto))]
     [ProducesResponseType( StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById( string id )
@@ -47,7 +49,7 @@ public class CarManufactureController : ControllerBase
     }
 
 
-    [HttpGet("GetAll", Name = "GetAll")]
+    [HttpGet("GetAllCarManufacture", Name = "GetAllCarManufacture")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CarManufacturerDto>))]
     public async Task<IActionResult> GetAll()
     {

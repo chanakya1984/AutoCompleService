@@ -6,8 +6,11 @@ using Common.DTO;
 using Microsoft.AspNetCore.Mvc;
 using SerilogTimings;
 
-[Route("api/[controller]/V1")]
 [ApiController]
+// [Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
+
 public class CarModelController : ControllerBase
 {
     private readonly ILogger<CarManufactureController> _logger;
@@ -32,7 +35,7 @@ public class CarModelController : ControllerBase
 
     }
 
-    [HttpGet("GetById/{id}",Name = "GetCarModelById/{id}")]
+    [HttpGet("GetCarModelById/{id}", Name = "GetCarModelById/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CarManufacturerDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(string id)

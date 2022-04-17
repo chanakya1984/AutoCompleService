@@ -1,4 +1,5 @@
 ﻿using AutoComplete.Business;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
@@ -9,6 +10,23 @@ builder.Host.UseSerilog( ( context, services, configuration ) => configuration
     .ReadFrom.Services( services )
     .Enrich.FromLogContext() );
 
+builder.Services.AddApiVersioning(o =>
+{
+    o.AssumeDefaultVersionWhenUnspecified = true;
+    o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    o.ReportApiVersions = true;
+    o.ApiVersionReader = ApiVersionReader.Combine(
+        new QueryStringApiVersionReader("api-version"),
+        new HeaderApiVersionReader("X-Version"),
+        new MediaTypeApiVersionReader("ver"));
+});
+
+builder.Services.AddVersionedApiExplorer(
+    options =>
+    {
+        options.GroupNameFormat = "'v'VVV";
+        options.SubstituteApiVersionInUrl = true;
+    });
 
 // Add services to the container.
 builder.Services.AddBusiness();
@@ -31,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseApiVersioning();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -38,6 +58,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
 
 
 
