@@ -81,7 +81,7 @@ void ConfigLogs()
 
 ElasticsearchSinkOptions ConfigureEls( IConfiguration config )
 {
-    return new ElasticsearchSinkOptions( new Uri( config["ElcConfigration:Uri"] ) )
+    return new ElasticsearchSinkOptions( new Uri( config["ElcConfiguration:Uri"] ) )
     {
         AutoRegisterTemplate = true, IndexFormat = $"AutoCompleteService"
     };
